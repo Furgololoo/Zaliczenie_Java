@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: medium;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: medium;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+        }
+
+        input {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+        }
+        button {
+            font-size: large;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Podaj swoje dane w celu obliczenia dziennego zapotrzebowania kalorii</h1>
+    <form action="#" th:action="@{/calculator}" th:object="${formularzKalorii}" method="post">
+        <label for="gender">Płeć:</label>
+        <select id="gender" name="gender" th:field="*{gender}">
+            <option value="male" th:selected="${formularzKalorii.gender == 'male'}">Mężczyzna</option>
+            <option value="female" th:selected="${formularzKalorii.gender == 'female'}">Kobieta</option>
+        </select>
+
+        <label for="age">Wiek:</label>
+        <input type="number" id="age" name="age" th:field="*{age}" th:value="${formularzKalorii.age}"/>
+
+        <label for="height">Wzrost (cm):</label>
+        <input type="number" id="height" name="height" th:field="*{height}" th:value="${formularzKalorii.height}"/>
+
+        <label for="weight">Waga (kg):</label>
+        <input type="number" id="weight" name="weight" th:field="*{weight}" th:value="${formularzKalorii.weight}"/>
+
+        <label for="activityLevel">Poziom aktywności:</label>
+        <select id="activityLevel" name="activityLevel" th:field="*{activityLevel}">
+            <option value="1" th:selected="${formularzKalorii.activityLevel == 1}">Brak aktywności</option>
+            <option value="2" th:selected="${formularzKalorii.activityLevel == 2}">Lekka aktywność</option>
+            <option value="3" th:selected="${formularzKalorii.activityLevel == 3}">Średnia aktywność</option>
+            <option value="4" th:selected="${formularzKalorii.activityLevel == 4}">Duża aktywność</option>
+        </select>
+
+        <button type="submit">Oblicz</button>
+    </form>
+</div>
+</body>
+</html>
