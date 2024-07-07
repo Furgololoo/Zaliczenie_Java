@@ -19,7 +19,8 @@ public class CalorieController {
 
     @PostMapping
     public String calculate(@ModelAttribute FormularzKalorii formData, Model model) {
-        double result = formData.calculateCalories();
+        double result = Math.floor(formData.calculateCalories());
+
         model.addAttribute("result", result);
         model.addAttribute("formData", formData);
         return "result";
